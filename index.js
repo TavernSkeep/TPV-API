@@ -5,18 +5,23 @@ const router = express.Router();
 
 //Data from hypothetical database
 
-const server = express();
+const app = express();
 
-server.get('/empleados', async (req, res) => {
-    list = await
-    conexion.finduser('123456789ABC');
-    res.send(list);
-    res.end();
-    console.log(list);
-})
+var res = conexion.finduser("123456789ABC");
+console.log(res);
+
+// app.get('/empleados', async (req, res) => {
+//     //var id = req.params.id;
+//     req.params.id = '123456789ABC';
+//     var res = conexion.finduser(req, res);
+//     console.log(res);
+//     //res.send(res);
+// });
+
+//app.use('/', conexion);
 
 //conexion.finduser('123456789ABC');
 
-server.listen(8080, () => {
+app.listen(8080, () => {
     console.log('Server on port 8080');
 });
