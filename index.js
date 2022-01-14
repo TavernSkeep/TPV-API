@@ -1,4 +1,5 @@
 const express = require('express');
+const req = require('express/lib/request');
 const conexion = require('./conexion.js');
 
 const router = express.Router();
@@ -7,20 +8,17 @@ const router = express.Router();
 
 const app = express();
 
-var res = conexion.finduser("123456789ABC");
-console.log(res);
+// req.params.id = "123456789ABC";
+// var res = conexion.finduser(req, res);
+// console.log(res);
 
-// app.get('/empleados', async (req, res) => {
-//     //var id = req.params.id;
-//     req.params.id = '123456789ABC';
-//     var res = conexion.finduser(req, res);
-//     console.log(res);
-//     //res.send(res);
-// });
+const getresult = app.get('/empleados', async (req, res) => {
+    req.params.id = '123456789ABC';
+    var res = await conexion.finduser(req, res);
+});
 
-//app.use('/', conexion);
-
-//conexion.finduser('123456789ABC');
+console.log('Resultado de get: \n');
+console.log(getresult);
 
 app.listen(8080, () => {
     console.log('Server on port 8080');
