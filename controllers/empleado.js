@@ -51,14 +51,14 @@ exports.update = function (req, res) {
     console.log("DOMINGO!")
     console.log(json)
     var nuevosDatos = {
-        Id_camarero: json.Id_camarero,
-        Nombre: json.Nombre,
-        jornada: json.jornada
+        nombre: json.nombre,
+        apellidos: json.apellidos,
+        contraseña: json.contraseña
     }
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
-        dbo.collection("empleado").updateOne({Id_camarero:json.Id_camarero},{$set:nuevosDatos}, function(err, result) {
+        dbo.collection("empleado").updateOne({codigo:json.codigo}, {$set:nuevosDatos}, function(err, result) {
             if (err) throw err;
             console.log(result);
             db.close();
