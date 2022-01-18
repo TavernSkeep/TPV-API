@@ -7,7 +7,7 @@ exports.get = function(req, res) {
         if (err) throw err;
         var dbo = db.db('TavernSkeep');
 
-        dbo.collection('empleado').findOne({codigo:code}, function(err, result) {
+        dbo.collection('producto').findOne({codigo:code}, function(err, result) {
             if (err) throw err;
             console.log(result)
             db.close();
@@ -21,7 +21,7 @@ exports.list = function (req, res) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
 
-        result = dbo.collection('empleado').find({}).toArray(function(err, result) {
+        result = dbo.collection('producto').find({}).toArray(function(err, result) {
             if (err) throw err;
             console.log(result)
             db.close();
@@ -35,7 +35,7 @@ exports.add = function (req, res) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
 
-        dbo.collection("empleado").insertOne(JSON.parse(JSON.stringify(req.body)), function(err, result) {
+        dbo.collection("producto").insertOne(JSON.parse(JSON.stringify(req.body)), function(err, result) {
             if (err)    console.log(err);
             else{
                 console.log(result);
@@ -52,14 +52,13 @@ exports.update = function (req, res) {
     console.log(json)
     var nuevosDatos = {
         codigo: json.codigo,
-        nombre: json.nombre,
-        apellidos: json.apellidos,
-        contraseña: json.contraseña
+        precio: json.precio,
+        stock: json.stock
     }
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
-        dbo.collection("empleado").updateOne({codigo:json.codigo}, {$set:nuevosDatos}, function(err, result) {
+        dbo.collection("producto").updateOne({codigo:json.codigo}, {$set:nuevosDatos}, function(err, result) {
             if (err) throw err;
             console.log(result);
             db.close();
@@ -74,7 +73,7 @@ exports.delete = function (req, res) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
-        dbo.collection("empleado").deleteOne({codigo:code}, function(err, result) {
+        dbo.collection("producto").deleteOne({codigo:code}, function(err, result) {
             if (err) throw err;
             console.log(result);
             db.close();

@@ -1,6 +1,7 @@
 const express = require('express');
 const req = require('express/lib/request');
 var empleado = require('./routes/empleado');
+var producto = require('./routes/producto');
 var http = require('http');
 
 const router = express.Router();
@@ -26,6 +27,7 @@ app.set('port', process.env.PORT || 8080);
 
 
 app.use('/', empleado);
+app.use('/', producto);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
