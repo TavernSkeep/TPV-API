@@ -68,7 +68,7 @@ exports.update = function (req, res) {
 }
 
 exports.delete = function (req, res) {
-    var code = req.params.code;
+    var code = req.params.codigo;
 
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
