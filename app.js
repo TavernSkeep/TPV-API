@@ -1,8 +1,11 @@
 const express = require('express');
 const req = require('express/lib/request');
-const conexion = require('./conexion.js');
+var empleado = require('./routes/empleado');
+var http = require('http');
 
 const router = express.Router();
+
+//const conexion = require('./conexion.js');
 
 const app = express();
 
