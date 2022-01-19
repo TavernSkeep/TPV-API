@@ -28,6 +28,11 @@ app.set('port', process.env.PORT || 8080);
 
 app.use('/', empleado);
 app.use('/', producto);
+app.use('/', pedido);
+app.use('/', mesa);
+app.use('/', ticket);
+app.use('/', linped);
+app.use('/', nomina);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
