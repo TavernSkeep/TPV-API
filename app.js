@@ -2,6 +2,11 @@ const express = require('express');
 const req = require('express/lib/request');
 var empleado = require('./routes/empleado');
 var producto = require('./routes/producto');
+var mesa = require('./routes/mesa');
+var pedido = require('./routes/pedido');
+var linped = require('./routes/linped');
+var ticket = require('./routes/ticket');
+var nomina = require('./routes/nomina');
 var http = require('http');
 
 const router = express.Router();
