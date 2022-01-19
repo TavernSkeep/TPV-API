@@ -52,10 +52,8 @@ exports.update = function (req, res) {
     console.log(json)
     var nuevosDatos = {
         codigo: json.codigo,
-        zona: json.zona,
-        n_sillas: json.n_sillas,
-        n_mesa: json.n_mesa,
-        is_reservada: json.is_reservada
+        horas: json.horas,
+        euros: json.n_euros
     }
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
