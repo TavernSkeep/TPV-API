@@ -48,11 +48,9 @@ exports.add = function (req, res) {
 
 exports.update = function (req, res) {
     var json = JSON.parse(JSON.stringify(req.body));
-    console.log("DOMINGO!")
     console.log(json)
     var nuevosDatos = {
         codigo: json.codigo,
-        fecha: json.fecha,
         comensales: json.comensales
     }
     MongoClient.connect(url, function(err, db) {

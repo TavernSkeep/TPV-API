@@ -7,7 +7,7 @@ exports.get = function(req, res) {
         if (err) throw err;
         var dbo = db.db('TavernSkeep');
 
-        dbo.collection('mesa').findOne({codigo:code}, function(err, result) {
+        dbo.collection('nomina').findOne({codigo:code}, function(err, result) {
             if (err) throw err;
             console.log(result)
             db.close();
@@ -21,7 +21,7 @@ exports.list = function (req, res) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
 
-        result = dbo.collection('mesa').find({}).toArray(function(err, result) {
+        result = dbo.collection('nomina').find({}).toArray(function(err, result) {
             if (err) throw err;
             console.log(result)
             db.close();
@@ -35,7 +35,7 @@ exports.add = function (req, res) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
 
-        dbo.collection("mesa").insertOne(JSON.parse(JSON.stringify(req.body)), function(err, result) {
+        dbo.collection("nomina").insertOne(JSON.parse(JSON.stringify(req.body)), function(err, result) {
             if (err)    console.log(err);
             else{
                 console.log(result);
@@ -58,7 +58,7 @@ exports.update = function (req, res) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
-        dbo.collection("mesa").updateOne({codigo:json.codigo}, {$set:nuevosDatos}, function(err, result) {
+        dbo.collection("nomina").updateOne({codigo:json.codigo}, {$set:nuevosDatos}, function(err, result) {
             if (err) throw err;
             console.log(result);
             db.close();
@@ -73,7 +73,7 @@ exports.delete = function (req, res) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
-        dbo.collection("mesa").deleteOne({codigo:code}, function(err, result) {
+        dbo.collection("nomina").deleteOne({codigo:code}, function(err, result) {
             if (err) throw err;
             console.log(result);
             db.close();

@@ -52,7 +52,6 @@ exports.update = function (req, res) {
     console.log(json)
     var nuevosDatos = {
         codigo: json.codigo,
-        fecha: json.fecha,
         precio_total: json.n_precio_total,
         precio_comercial: json.precio_comercial
     }
