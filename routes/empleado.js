@@ -5,10 +5,10 @@ var empleado = require("../controllers/empleado");
 const bodyParser = require('body-parser').json()
 
 router.get("/empleado", empleado.list);
-router.get("/empleado/:codigo", empleado.get);
+router.get("/empleado/:dni", empleado.get);
 router.post("/empleado", bodyParser, empleado.add);
-router.put("/empleado/:codigo", bodyParser, empleado.update);
-router.delete("/empleado/:codigo", empleado.delete);
+router.put("/empleado/:dni", bodyParser, empleado.update);
+router.delete("/empleado/:dni", empleado.delete);
 
 module.exports = router;
 

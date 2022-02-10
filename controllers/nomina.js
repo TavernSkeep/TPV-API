@@ -25,7 +25,7 @@ exports.list = function (req, res) {
             if (err) throw err;
             console.log(result)
             db.close();
-            return res.json({result: result})
+            return res.json(result);
         }) 
     })
 }

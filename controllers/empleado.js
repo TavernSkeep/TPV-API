@@ -3,11 +3,11 @@ const url = "mongodb://localhost:27017/"
 
 exports.get = function(req, res) {
     MongoClient.connect(url, function (err, db) {
-        var code = req.params.codigo;
+        var code = req.params.dni;
         if (err) throw err;
         var dbo = db.db('TavernSkeep');
 
-        dbo.collection('empleado').findOne({codigo:code}, function(err, result) {
+        dbo.collection('empleado').findOne({dni:code}, function(err, result) {
             if (err) throw err;
             console.log(result)
             db.close();
@@ -25,7 +25,7 @@ exports.list = function (req, res) {
             if (err) throw err;
             console.log(result)
             db.close();
-            return res.json({result: result})
+            return res.json(result)
         }) 
     })
 }
@@ -48,7 +48,6 @@ exports.add = function (req, res) {
 
 exports.update = function (req, res) {
     var json = JSON.parse(JSON.stringify(req.body));
-    console.log("DOMINGO!")
     console.log(json)
     var nuevosDatos = {
         dni: json.dni,
@@ -70,12 +69,12 @@ exports.update = function (req, res) {
 }
 
 exports.delete = function (req, res) {
-    var code = req.params.codigo;
+    var code = req.params.dni;
 
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
-        dbo.collection("empleado").deleteOne({codigo:code}, function(err, result) {
+        dbo.collection("empleado").deleteOne({dni:code}, function(err, result) {
             if (err) throw err;
             console.log(result);
             db.close();
