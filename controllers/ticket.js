@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient
-const url = "mongodb://localhost:27017/"
+const url = "mongodb+srv://TavernSkeep:ChingChengHanji@cluster0.yp4it.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 exports.get = function(req, res) {
     MongoClient.connect(url, function (err, db) {
