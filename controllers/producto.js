@@ -3,11 +3,11 @@ const url = "mongodb+srv://TavernSkeep:ChingChengHanji@cluster0.yp4it.mongodb.ne
 
 exports.get = function(req, res) {
     MongoClient.connect(url, function (err, db) {
-        var code = req.params.codigo;
+        var code = req.params._id;
         if (err) throw err;
         var dbo = db.db('TavernSkeep');
 
-        dbo.collection('producto').findOne({codigo:code}, function(err, result) {
+        dbo.collection('producto').findOne({_id:code}, function(err, result) {
             if (err) throw err;
             console.log(result)
             db.close();
@@ -48,17 +48,16 @@ exports.add = function (req, res) {
 
 exports.update = function (req, res) {
     var json = JSON.parse(JSON.stringify(req.body));
-    console.log("DOMINGO!")
-    console.log(json)
+    console.log(json);
     var nuevosDatos = {
-        codigo: json.codigo,
+        _id: json._id,
         precio: json.precio,
         stock: json.stock
     }
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
-        dbo.collection("producto").updateOne({codigo:json.codigo}, {$set:nuevosDatos}, function(err, result) {
+        dbo.collection("producto").updateOne({_id:json._id}, {$set:nuevosDatos}, function(err, result) {
             if (err) throw err;
             console.log(result);
             db.close();
@@ -68,12 +67,12 @@ exports.update = function (req, res) {
 }
 
 exports.delete = function (req, res) {
-    var code = req.params.codigo;
+    var code = req.params._id;
 
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
-        dbo.collection("producto").deleteOne({codigo:code}, function(err, result) {
+        dbo.collection("producto").deleteOne({_id:code}, function(err, result) {
             if (err) throw err;
             console.log(result);
             db.close();
