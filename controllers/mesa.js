@@ -35,13 +35,23 @@ exports.add = function (req, res) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
 
-        dbo.collection("mesa").insertOne(JSON.parse(JSON.stringify(req.body)), function(err, result) {
+        var json = JSON.parse(JSON.stringify(req.body));
+        var nuevosDatos = {
+            _id: json.id,
+            zona: json.zona,
+            n_sillas: json.n_sillas,
+            ticket_actual: json.ticket_actual,
+            codigo: json.codigo,
+            n_mesa: json.n_mesa
+        }
+
+        dbo.collection("mesa").insertOne(nuevosDatos), function(err, result) {
             if (err)    console.log(err);
             else{
                 console.log(result);
                 db.close();
             }
-        });
+        };
     });
     res.end();
 }

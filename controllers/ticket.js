@@ -34,14 +34,23 @@ exports.add = function (req, res) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
+        
+        var json = JSON.parse(JSON.stringify(req.body));
+        var nuevosDatos = {
+            _id: json.id,
+            codigo: json.codigo,
+            mesa: json.mesa,
+            listaproductos: json.listaproductos,
+            fecha: json.fecha
+        }
 
-        dbo.collection("ticket").insertOne(JSON.parse(JSON.stringify(req.body)), function(err, result) {
+        dbo.collection("ticket").insertOne(nuevosDatos), function(err, result) {
             if (err)    console.log(err);
             else{
                 console.log(result);
                 db.close();
             }
-        });
+        };
     });
     res.end();
 }

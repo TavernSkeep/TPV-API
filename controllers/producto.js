@@ -35,13 +35,25 @@ exports.add = function (req, res) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
 
-        dbo.collection("producto").insertOne(JSON.parse(JSON.stringify(req.body)), function(err, result) {
+        var json = JSON.parse(JSON.stringify(req.body));
+        var nuevosDatos = {
+            _id: json.id,
+            nombre: json.nombre,
+            especificaciones: json.especificaciones,
+            precio: json.precio,
+            imagen: json.imagen,
+            stock: json.imagen,
+            tipo_producto: json.tipo_producto,
+            es_categoria: json.es_categoria
+        }
+
+        dbo.collection("producto").insertOne(nuevosDatos), function(err, result) {
             if (err)    console.log(err);
             else{
                 console.log(result);
                 db.close();
             }
-        });
+        };
     });
     res.end();
 }
