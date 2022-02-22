@@ -3,11 +3,11 @@ const url = "mongodb+srv://TavernSkeep:ChingChengHanji@cluster0.yp4it.mongodb.ne
 
 exports.get = function(req, res) {
     MongoClient.connect(url, function (err, db) {
-        var code = req.params._id;
+        var Nombre = req.params.nombre;
         if (err) throw err;
         var dbo = db.db('TavernSkeep');
 
-        dbo.collection('producto').findOne({_id:code}, function(err, result) {
+        dbo.collection('producto').findOne({nombre:Nombre}, function(err, result) {
             if (err) throw err;
             console.log(result)
             db.close();
@@ -42,7 +42,7 @@ exports.add = function (req, res) {
             especificaciones: json.especificaciones,
             precio: json.precio,
             imagen: json.imagen,
-            stock: json.imagen,
+            stock: json.stock,
             tipo_producto: json.tipo_producto,
             es_categoria: json.es_categoria
         }
@@ -62,14 +62,15 @@ exports.update = function (req, res) {
     var json = JSON.parse(JSON.stringify(req.body));
     console.log(json);
     var nuevosDatos = {
-        _id: json._id,
+        nombre: json.nombre,
         precio: json.precio,
+        especificaciones: json.especificaciones,
         stock: json.stock
     }
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
-        dbo.collection("producto").updateOne({_id:json._id}, {$set:nuevosDatos}, function(err, result) {
+        dbo.collection("producto").updateOne({nombre:json.nombre}, {$set:nuevosDatos}, function(err, result) {
             if (err) throw err;
             console.log(result);
             db.close();
@@ -79,12 +80,12 @@ exports.update = function (req, res) {
 }
 
 exports.delete = function (req, res) {
-    var code = req.params._id;
+    var Nombre = req.params.nombre;
 
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
-        dbo.collection("producto").deleteOne({_id:code}, function(err, result) {
+        dbo.collection("producto").deleteOne({nombre:Nombre}, function(err, result) {
             if (err) throw err;
             console.log(result);
             db.close();

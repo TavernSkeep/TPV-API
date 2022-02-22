@@ -65,7 +65,7 @@ exports.update = function (req, res) {
         dni: json.dni,
         contraseña: json.contraseña,
         puesto: json.puesto,
-        telefono: json.puesto,
+        telefono: json.telefono,
         email: json.email
     }
     MongoClient.connect(url, function(err, db) {

@@ -11,25 +11,7 @@ var http = require('http');
 
 const router = express.Router();
 
-//const conexion = require('./conexion.js');
-
 const app = express();
-
-// req.params.id = "123456789ABC";
-// var res = conexion.finduser(req, res);
-// console.log(res);
-/*
-const getresult = app.get('/empleados', async (req, res) => {
-    req.params.id = '123456789ABC';
-    var res = await conexion.finduser(req, res);
-});
-
-console.log('Resultado de get: \n');
-console.log(getresult);
-*/
-
-app.set('port', process.env.PORT || 8080);
-
 
 app.use('/', empleado);
 app.use('/', producto);
