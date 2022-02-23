@@ -59,7 +59,7 @@ exports.update = function (req, res) {
     var json = JSON.parse(JSON.stringify(req.body));
     console.log(json)
     var nuevosDatos = {
-        _id: json._id,
+        //_id: json._id,
         codigo: json.codigo,
         mesa: json.mesa,
         listaproductos: json.listaproductos,
