@@ -1,8 +1,8 @@
-var MongoClient = require('mongodb').MongoClient
-const url = "mongodb+srv://TavernSkeep:ChingChengHanji@cluster0.yp4it.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const MongoClient = require('mongodb').MongoClient
+require('dotenv').config()
 
 exports.get = function(req, res) {
-    MongoClient.connect(url, function (err, db) {
+    MongoClient.connect(process.env.MONGO_URL, function (err, db) {
         var code = req.params.dni;
         if (err) throw err;
         var dbo = db.db('TavernSkeep');
@@ -17,7 +17,7 @@ exports.get = function(req, res) {
 }
 
 exports.list = function (req, res) {
-    MongoClient.connect(url, function (err, db) {
+    MongoClient.connect(process.env.MONGO_URL, function (err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
 
@@ -31,7 +31,7 @@ exports.list = function (req, res) {
 }
 
 exports.add = function (req, res) {
-    MongoClient.connect(url, function(err, db) {
+    MongoClient.connect(process.env.MONGO_URL, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
 
@@ -68,7 +68,7 @@ exports.update = function (req, res) {
         telefono: json.telefono,
         email: json.email
     }
-    MongoClient.connect(url, function(err, db) {
+    MongoClient.connect(process.env.MONGO_URL, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
         dbo.collection("empleado").updateOne({dni:json.dni}, {$set:nuevosDatos}, function(err, result) {
@@ -83,7 +83,7 @@ exports.update = function (req, res) {
 exports.delete = function (req, res) {
     var code = req.params.dni;
 
-    MongoClient.connect(url, function(err, db) {
+    MongoClient.connect(process.env.MONGO_URL, function(err, db) {
         if (err) throw err;
         var dbo = db.db("TavernSkeep");
         dbo.collection("empleado").deleteOne({dni:code}, function(err, result) {
