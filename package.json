@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/TavernSkeep/APIRest#readme",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "express": "^4.17.2",
     "mongodb": "^4.3.0"
   }
